@@ -58,7 +58,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Email не может быть пустым")
     private String email;
 
-    @Column
+    @Column(name = "password")
     @NotEmpty(message = "Password не может быть пустым")
     private String password;
 
