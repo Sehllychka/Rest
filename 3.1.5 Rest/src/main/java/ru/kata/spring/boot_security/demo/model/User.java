@@ -62,7 +62,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Password не может быть пустым")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @ToString.Exclude
     @Fetch(FetchMode.JOIN)
     @JoinTable(name = "users_roles",
