@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.exception;
 
+import lombok.AllArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Component;
@@ -11,13 +12,11 @@ import java.util.List;
 import java.util.Locale;
 
 @Component
+@AllArgsConstructor
 public class ValidationUtils {
 
     private final MessageSource messageSource;
 
-    public ValidationUtils(MessageSource messageSource) {
-        this.messageSource = messageSource;
-    }
     public String getErrorsFromBindingResult(BindingResult bindingResult) {
         List<ObjectError> errors = bindingResult.getAllErrors();
         if (errors.isEmpty()) {

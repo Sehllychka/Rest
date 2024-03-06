@@ -1,6 +1,6 @@
 package ru.kata.spring.boot_security.demo.configs;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,20 +13,11 @@ import ru.kata.spring.boot_security.demo.security.SecurityUserService;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class WebSecurityConfig {
     private final SuccessUserHandler successUserHandler;
     private final SecurityUserService securityUserService;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler,
-                             SecurityUserService securityUserService,
-                             PasswordEncoder passwordEncoder) {
-        this.successUserHandler = successUserHandler;
-        this.securityUserService = securityUserService;
-        this.passwordEncoder = passwordEncoder;
-    }
-
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
