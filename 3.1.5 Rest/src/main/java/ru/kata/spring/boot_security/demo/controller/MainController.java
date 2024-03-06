@@ -36,7 +36,7 @@ public class MainController {
     }
 
     @GetMapping("users/{id}")
-    public ResponseEntity<?> getUser(@PathVariable("id") long id) {
+    public ResponseEntity<User> getUser(@PathVariable("id") long id) {
         User user = userService.findByIdUser(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
