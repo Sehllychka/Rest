@@ -25,14 +25,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class MainController {
     private final UserService userService;
     private final ValidationUtils validationUtils;
-
-    public MainController(UserService userService, ValidationUtils validationUtils) {
-        this.userService = userService;
-        this.validationUtils = validationUtils;
-    }
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getUsers() {
