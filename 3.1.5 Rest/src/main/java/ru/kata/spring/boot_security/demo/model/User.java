@@ -38,28 +38,23 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "name")
     @NotEmpty(message = "First Name не может быть пустым")
     @Size(min = 2, max = 45, message = "First Name значение от  2 до  45")
     private String name;
 
-    @Column(name = "lastname")
     @Size(min = 2, max = 45, message = "Last Name значение 2 до  45")
     private String lastname;
 
-    @Column(name = "age")
     @PositiveOrZero(message = " Age Не отрицательное")
     private long age;
 
-    @Column(name = "email", unique = true)
+    @Column(unique = true)
     @Email(message = "Email Некорректный ввод")
     @NotEmpty(message = "Email не может быть пустым")
     private String email;
 
-    @Column(name = "password")
     @NotEmpty(message = "Password не может быть пустым")
     private String password;
 
