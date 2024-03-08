@@ -1,19 +1,14 @@
 package ru.kata.spring.boot_security.demo.model;
 
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -58,7 +53,7 @@ public class User implements UserDetails {
     @NotEmpty(message = "Password не может быть пустым")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.REFRESH)
+    @ManyToMany
     @ToString.Exclude
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
