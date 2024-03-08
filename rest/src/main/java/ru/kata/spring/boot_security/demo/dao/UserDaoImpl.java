@@ -21,8 +21,8 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getUsers() {
-        return entityManager.createQuery(
-                "from User", User.class).getResultList();
+        return entityManager.createQuery("SELECT u FROM User u JOIN FETCH u.roles", User.class)
+                .getResultList();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByIdUser(long id) {
         TypedQuery<User> query = entityManager.createQuery(
-                "SELECT u FROM User u WHERE u.id = :userId", User.class);
+                "SELECT u FROM User u join fetch u.roles where u.id = :userId ", User.class);
         query.setParameter("userId", id);
         List<User> users = query.getResultList();
         if (users.isEmpty()) {
@@ -61,7 +61,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByUsername(String email) {
         try {
-            Query query = entityManager.createQuery("select u from User u where u.email= :email", User.class);
+            Query query = entityManager.createQuery("select u from User u join fetch u.roles where u.email= :email", User.class);
             query.setParameter("email", email);
             return (User) query.getSingleResult();
         } catch (NoResultException e) {
